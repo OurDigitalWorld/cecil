@@ -1,0 +1,33 @@
+README Created: Oct. 2011
+Last Revised: Jan. 2013
+
+Project: Imager reader
+
+This a modification of the Cocoon ImageOp Reader suite, which
+seems to be broken in trunk. A cocoon reader is useful for 
+working with special generators, for example, combining with 
+the zip generator:
+
+[http://app.org/app/]img-foo.jpg-2.0-1-png
+
+which maps to something like:
+
+<map:match pattern="img-*-*-*-*">
+   <map:read type="img-op-scale" src="jar:{realpath:/}files.zip!/{1}.jpg">
+      <map:parameter name="scale-scale" value="{2}" />
+      <map:parameter name="scale-align" value="{3}" />
+      <map:parameter name="output-format" value="{4}" />
+   </map:read>
+</map:match>
+
+The "scale-align" parameter defines where an image is divided, where:
+
+0 - passes through the image with the resizing
+1 - passes through the top left quadrant of the image
+2 - passes through the top right quadrant of the image
+3 - passes through the bottom left quadrant of the image
+4 - passes through the bottom right quadrant of the image
+
+This comes in handy for newspaper processing.
+
+art rhyno <projectconifer.ca>
